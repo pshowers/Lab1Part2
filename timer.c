@@ -10,14 +10,14 @@
 
 #define FCY 14745600
 #define ONE_MILLISECOND 57
-#define ONE_MICROSECOND 0.8432
+#define ONE_MICROSECOND 14
 
     //TODO: Create a delay for "delay" micro seconds using timer 2
     void delayUs(unsigned int delay)
 {
     TMR2 = 0; //According to the datasheet this should be reset automatically, but it does not sometimes.
     PR2 = delay*ONE_MICROSECOND; //Period register value calculated from lecture
-    T2CONbits.TCKPS = 0b01; //prescalar 8
+    T2CONbits.TCKPS = 0; //prescalar 1
     IFS0bits.T2IF = 0; // Timer 2 interrupt flag down
     T2CONbits.TON = 1; // Turn timer 2 on
 

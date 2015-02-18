@@ -36,21 +36,14 @@ void writeFourBits(unsigned char word, unsigned int commandType, unsigned int de
 {
     if(lower)
     {
-        //LATBbits.LATB15 = word<3>;
         LATBbits.LATB15 = (word & 0x08) >> 3;
-        //LATBbits.LATB14 = word<2>;
         LATBbits.LATB14 = (word & 0x04) >> 2;
-//        LATBbits.LATB13 = word<1>;
         LATBbits.LATB13 = (word & 0x02) >> 1;
-//       LATBbits.LATB12 = word<0>;
         LATBbits.LATB12 = (word & 0x01);
     }
     else
     {
-//        LATBbits.LATB15 = word<7>;
-//        LATBbits.LATB14 = word<6>;
-//        LATBbits.LATB13 = word<5>;
-//        LATBbits.LATB12 = word<4>;
+
 
         LATBbits.LATB15 = (word & 0x80) >> 7;
         LATBbits.LATB14 = (word & 0x40) >> 6;
@@ -98,121 +91,25 @@ void initLCD(void)
 
     delayUs(1500);
 
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 1;
-//    LATBbits.LATB12 = 1;
-//
-//    delayUs(4100);
-
     writeFourBits(0x03, LCD_WRITE_CONTROL, 4100, LOWER);
 
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 1;
-//    LATBbits.LATB12 = 1;
-//
-//    delayUs(100);
-
     writeFourBits(0x03, LCD_WRITE_CONTROL, 100, LOWER);
-
-    
-
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 1;
-//    LATBbits.LATB12 = 1;
-//
-//    delayUs(40);
-//
-//   // Enable 4-bit interface
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 1;
-//    LATBbits.LATB12 = 0;
-//
-//    delayUs(40);
 
     writeLCD(0x32,LCD_WRITE_CONTROL, 40);
     // 4-bit mode initialization is complete. We can now configure the various LCD
     // options to control how the LCD will function.
 
-
-
-
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 1;
-//    LATBbits.LATB12 = 0;
-//
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 1;    //N = 1 sets lines to 2 lines
-//    LATBbits.LATB14 = 0;    //F = 0 sets dots to 5x7
-//    LATBbits.LATB13 = 0;
-//    LATBbits.LATB12 = 0;
-//
-//    delayUs(40);
-
-    // Function Set (specifies data width, lines, and font.
-
     writeLCD(0x28,LCD_WRITE_CONTROL, 40);
-
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 0;
-//    LATBbits.LATB12 = 0;
-//
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 1;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 0;
-//    LATBbits.LATB12 = 0;
-//
-//    delayUs(40);
 
     // TODO: Display On/Off Control
         // Turn Display (D) Off
 
     writeLCD(0x08,LCD_WRITE_CONTROL, 40);
 
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 0;
-//    LATBbits.LATB12 = 0;
-//
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 0;
-//    LATBbits.LATB12 = 1;
-//
-//    delayUs(40);
-
     // TODO: Clear Display (The delay is not specified in the data sheet at this point.
     //You really need to have the clear display delay here.
 
     writeLCD(0x01,LCD_WRITE_CONTROL, 1640);
-
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 0;
-//    LATBbits.LATB13 = 0;
-//    LATBbits.LATB12 = 0;
-//
-//  /*NOTE: Check These values later on because we dont know which values
-//   they need*/
-//    LCD_RS = 0;
-//    LATBbits.LATB15 = 0;
-//    LATBbits.LATB14 = 1;
-//    LATBbits.LATB13 = 1; // 1 Sets it to increment
-//    LATBbits.LATB12 = 0;    //S = 1 accompanies a display shift
 
     // TODO: Entry Mode Set
         // Set Increment Display, No Shift (i.e. cursor move)
@@ -255,7 +152,10 @@ void clearLCD()
  */
 void moveCursorLCD(unsigned char x, unsigned char y)
 {
-    writeLCD(0x14,LCD_WRITE_CONTROL, 46);
+//unsigned char xVal = x;
+//unsigned char yVal = y;
+unsigned char ddAddress = 0x80 | 0x42;
+    writeLCD(0xC2,LCD_WRITE_CONTROL, 40);
 }
 
 /*
