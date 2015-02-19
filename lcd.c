@@ -154,7 +154,7 @@ void moveCursorLCD(unsigned char x, unsigned char y)
 {
 //unsigned char xVal = x;
 //unsigned char yVal = y;
-unsigned char ddAddress = 0x80 | 0x42;
+//unsigned char ddAddress = 0x80 | 0x42;
     writeLCD(0xC2,LCD_WRITE_CONTROL, 40);
 }
 
