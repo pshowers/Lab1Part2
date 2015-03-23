@@ -6,7 +6,7 @@
                    projectFiles="true">
       <itemPath>timer.h</itemPath>
       <itemPath>lcd.h</itemPath>
-      <itemPath>/Applications/microchip/xc16/v1.24/support/PIC24F/h/p24FJ64GA002.h</itemPath>
+      <itemPath>../../../../../Program Files (x86)/Microchip/xc16/v1.24/support/PIC24F/h/p24FJ64GA002.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -28,6 +28,7 @@
   <sourceRootList>
     <Elem>../../../../Program Files (x86)/Microchip/xc16/v1.23/support/PIC24F/h</Elem>
     <Elem>/Applications/microchip/xc16/v1.24/support/PIC24F/h</Elem>
+    <Elem>../../../../../Program Files (x86)/Microchip/xc16/v1.24/support/PIC24F/h</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -37,7 +38,7 @@
         <targetDevice>PIC24FJ64GA002</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.24</languageToolchainVersion>
         <platform>3</platform>
@@ -164,9 +165,6 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <PICkit3PlatformTool>
-        <property key="firmware.download.all" value="false"/>
-      </PICkit3PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

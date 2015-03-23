@@ -43,8 +43,6 @@ void writeFourBits(unsigned char word, unsigned int commandType, unsigned int de
     }
     else
     {
-
-
         LATBbits.LATB15 = (word & 0x80) >> 7;
         LATBbits.LATB14 = (word & 0x40) >> 6;
         LATBbits.LATB13 = (word & 0x20) >> 5;
@@ -101,7 +99,7 @@ void initLCD(void)
 
     writeLCD(0x28,LCD_WRITE_CONTROL, 40);
 
-    // TODO: Display On/Off Control
+    // TODO: Display On/Off Control    0x28
         // Turn Display (D) Off
 
     writeLCD(0x08,LCD_WRITE_CONTROL, 40);
@@ -115,9 +113,10 @@ void initLCD(void)
         // Set Increment Display, No Shift (i.e. cursor move)
     writeLCD(0x06,LCD_WRITE_CONTROL, 40);
 
+    //--------------------------------------------------------------------------------
 // TODO: Display On/Off Control
   // Turn Display (D) On, Cursor (C) Off, and Blink(B) Off
-    writeLCD(0x0C,LCD_WRITE_CONTROL, 40);
+    writeLCD(0x0C,LCD_WRITE_CONTROL, 40);  //0x0C
 }
 
 
@@ -152,10 +151,16 @@ void clearLCD()
  */
 void moveCursorLCD(unsigned char x, unsigned char y)
 {
-//unsigned char xVal = x;
-//unsigned char yVal = y;
-//unsigned char ddAddress = 0x80 | 0x42;
-    writeLCD(0xC2,LCD_WRITE_CONTROL, 40);
+    unsigned char z;
+    unsigned char ddAddress = 0x80;
+ 
+    z = (x << 6) + y;    //0x42
+    ddAddress = ddAddress + z;
+    
+    writeLCD(ddAddress,LCD_WRITE_CONTROL, 40);
+
+    //unsigned char ddAddress = 0x80 | 0x42;
+    //writeLCD(0xC2,LCD_WRITE_CONTROL, 40);
 }
 
 /*
